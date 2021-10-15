@@ -18,6 +18,7 @@ export default {
     //   // 문자열의 글자를 0부터 150줄까지 잘라서 반환한다.
     //   return this.product.description.substring(0, 150)
     // }
+    
   }
 }
 </script>

@@ -2,8 +2,10 @@
   <div class="home">
     <DescriptionDrawer
       :product="product" 
-      :active="active.product_drawer" />
-    <div class=">product-cards-container">
+      :active="active.product_drawer" 
+      v-on:close-product-drawer="closeProductDrawer()"/>
+
+    <div class="product-cards-container">
       <ProductSummaryCard 
         v-for="product in items"
         :key="product.id"
@@ -40,6 +42,10 @@ export default {
       this.product = product
       this.active.product_drawer = true  // true 일 때 화면이 보임.
       console.log(this.product);
+    },
+    // 장바구니 창 닫기
+    closeProductDrawer() {
+      this.active.product_drawer = false
     }
   }
 }

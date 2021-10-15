@@ -1,7 +1,7 @@
 <template>
   <div class="drawer-background" :class="{show: active}" @click="$emit('close-product-drawer')" />
   <div class="drawer" :class="{show:active}">
-    <div class="drawer-close" @click="$emit('close-product-drawer')">x</div>
+    <div class="drawer-close" v-on:click="$emit('close-product-drawer')">x</div>
 
 
     <div v-if="product" class="product-details">
@@ -15,8 +15,8 @@
       </div>
 
       <div class="buttons_container">
-        <button class="remove">-</button>
-        <button class="add">+</button>
+        <button class="remove" @click="removeFromCart()">remove</button>
+        <button class="add" @click="addToCart()">add</button>
       </div>
     </div>
   </div>
@@ -27,8 +27,16 @@
 export default {
   props: ['product', 'active'],
   computed: {
+    methods: {
+      addToCart() {
+        this.$store.commit('addToCart', this.product)
+      },
+      removeFromCart() {
+         this.$store.commit('removeFromCart', this.product)
+      }
+    },
     product_total() {
-      return 56.00
+      return this.$store.getters.productQuantity(this.product)
     }
   }
 }
@@ -63,6 +71,7 @@ export default {
   z-index: 101;
   overflow-y: scroll;
   
+  
   &.show {
     left: 0;
   }
@@ -86,9 +95,9 @@ export default {
 }
 
 .product-details {
-  display: flex;
-  justify-content: center;
-  flex-direction: colum;
+  //display: flex;
+  //justify-content: center;
+  //flex-direction: colum;
 
   p.description {
     padding: 20px;
