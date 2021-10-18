@@ -3,7 +3,7 @@
     <router-link :class="{active: $route.name === 'Home'}" to="/">Home  </router-link> |
     <router-link :class="{active: $route.name === 'Cart'}" to="/cart">Cart</router-link>
   </div>
-  <router-view/>
+  <!-- <router-view/> -->
 </template>
 
 <style lang="scss">
